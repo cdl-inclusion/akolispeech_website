@@ -63,7 +63,6 @@
     margin: 1.5rem 0 0;
   }
   p { margin: 0 0 1.15rem; color: var(--muted); }
-  main > p:last-of-type { margin-bottom: 0; }
   a {
     color: var(--fg);
     text-decoration: none;
@@ -77,73 +76,174 @@
     border-radius: 16px;
     padding: 1.75rem 1.9rem;
   }
-  .partners {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--line);
+  section { margin-bottom: 2rem; }
+  .card p:last-child, .join .note { margin-bottom: 0; }
+  .tagline {
+    margin: 1rem 0 0;
+    font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+    font-weight: 600;
+    color: var(--text);
   }
-  .partners h2 {
-    margin: 0 0 0.9rem;
+  .hero .lead { margin-bottom: 1.15rem; }
+  .button {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1.6rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--fg);
+    color: #111;
+    font-weight: 600;
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  .note { margin: 0.75rem 0 0; font-size: 0.95rem; }
+  .eyebrow {
+    display: block;
+    margin-bottom: 0.4rem;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: var(--muted);
   }
-  .partners ul {
-    margin: 0;
+  h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+    line-height: 1.3;
+    color: var(--fg);
+  }
+  h3 { margin: 0 0 0.5rem; font-size: 1.05rem; color: var(--text); }
+  .steps {
+    margin: 1.5rem 0;
     padding: 0;
     list-style: none;
+    counter-reset: step;
     display: grid;
-    gap: 0.55rem;
+    gap: 1rem;
   }
-  .partners li { color: var(--muted); }
-  .cta {
-    margin-top: 2.5rem;
-    text-align: center;
-    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+    color: var(--muted);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 222, 23, 0.12);
+    color: var(--fg);
+    font-weight: 700;
+  }
+  .steps strong { display: block; color: var(--text); }
+  .badge {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid rgba(255, 222, 23, 0.5);
+    border-radius: 999px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--fg);
   }
-  .availability { margin-top: 2rem; }
-  .availability strong { color: var(--text); font-weight: 600; }
-  .cta small {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--muted);
+  .join .badge { margin: 0.5rem 0 0; }
+  .subhead { font-size: 1.1rem; color: var(--text); }
+  .ways {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
+  .ways > div {
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .ways ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+  .ways li + li { margin-top: 0.35rem; }
+  .join {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .join strong, .availability strong { color: var(--text); font-weight: 600; }
+  .partners { margin-bottom: 0; font-size: 0.95rem; }
 </style>
 </head>
 <body>
 <main>
-  <div class="hero">
+  <section class="hero">
     <img class="logo" src="akolispeech_logo.jpg" alt="Akoli Speech App logo" width="1024" height="1024">
     <h1><span class="welcome">Welcome to</span>Akoli Speech</h1>
+    <p class="tagline">Your voice. Your words. Better understood.</p>
+    <p class="lead">Akoli Speech is a personalised speech recognition app designed for people whose speech may be difficult for conventional speech recognition systems to understand.</p>
+    <p>By learning from your speech, Akoli aims to help technology better recognise your words, making communication more accessible.</p>
+    <a class="button" href="mailto:support@akolispeech.com?subject=Request%20access%20to%20Akoli">Request access to Akoli</a>
+    <p class="note">Currently available by invitation.</p>
+  </section>
 
-    <p class="lead">Helping people living with speech that may be difficult to understand — with personalized speech recognition that learns to better recognise how you speak.</p>    
+  <section class="card">
+    <span class="eyebrow">How Akoli works</span>
+    <h2>Speech recognition that learns from you</h2>
+    <p>Everyone speaks differently. Yet most speech recognition technology is designed around a limited range of voices.</p>
+    <p>Akoli takes a different approach.</p>
+    <ol class="steps">
+      <li><strong>Record your speech</strong>Create recordings at your own pace.</li>
+      <li><strong>Build your model</strong>Akoli uses your recordings to develop a personalised speech recognition model.</li>
+      <li><strong>Use your voice</strong>The app aims to recognise your speech more accurately and turn your words into text.</li>
+    </ol>
+    <p>Built on research from Google's <a href="https://sites.research.google/euphonia/about/">Project Euphonia</a>, Akoli is helping explore how speech technology can work for more people.</p>
+  </section>
 
-  </div>
-
-  <div class="card">
-    <p>Akoli Speech helps people living with different speech to create and use their own personalized automatic speech recognition (ASR) model — that better recognises individual speech patterns.
-    <p>A person records a set of speech samples in their own time, and the app learns from them to build a personalized speech recognition model. The goal is to more accurately caption the words you say.</p>
-    <p>The app builds on research from Google's <a href="https://sites.research.google/euphonia/about/">Project Euphonia</a>.</p>
-
-    <div class="partners">
-      <p>Akoli Speech is developed at the <a href="https://www.cdl-inclusion.com/">Centre for Digital Language Inclusion (CDLI)</a> at <a href="https://www.ucl.ac.uk/">UCL's</a> <a href="https://www.disabilityinnovation.com/">Global Disability Innovation Hub (GDI Hub)</a>, in collaboration with <a href="https://talkingtippsafricafoundation.org/">Talking Tips Africa</a> and <a href="https://www.senseshub.vision/">Senses Hub</a>.</p>
-      <p>The development of Akoli Speech has been supported by Google.org and the UK International Development Funded AT2030 programme that tests ‘what works’ to improve access to life-changing Assistive Technology (AT) for all. Global Law firm Hogan Lovells provided pro bono legal advice.</p>
+  <section class="card community">
+    <span class="eyebrow">Join the Akoli Community</span>
+    <h2>The Akoli Community</h2>
+    <p class="subhead">Better speech technology, shaped by the people who use it.</p>
+    <p>We believe that people whose speech is often misunderstood should be central to shaping the technology we design.</p>
+    <p>The Akoli Community will bring together people with different speech patterns, families, researchers, developers and disability organisations to learn from one another and help shape more inclusive speech technology.</p>
+    <p>There are different ways to get involved:</p>
+    <div class="ways">
+      <div>
+        <h3>Help shape Akoli</h3>
+        <ul>
+          <li>Share your experiences of using speech technology.</li>
+          <li>Join user testing and co-design activities.</li>
+          <li>Tell us what works, what doesn't, and what matters most.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Help build the future</h3>
+        <ul>
+          <li>Collaborate on research and innovation.</li>
+          <li>Explore opportunities to contribute to inclusive speech recognition.</li>
+          <li>Help expand access across languages and communities.</li>
+        </ul>
+      </div>
     </div>
-  </div>
+    <div class="join">
+      <p><strong>Interested in joining?</strong><br><span class="badge">Coming soon</span></p>
+      <p class="note">Community activities and opportunities to participate will be announced soon.</p>
+    </div>
+  </section>
 
-  <p class="cta">Now available by invitation.<small>If you have a speech impairment and are interested in using the app, send us an email at <a href="mailto:support@akolispeech.com">support@akolispeech.com</a>.</small></p>
-
-  <div class="card availability">
-    <p><strong>Supported languages:</strong> English, Portuguese, Spanish, Swahili, Luganda, Kinyarwanda.</p>
+  <section class="card availability">
+    <p><strong>Currently supported languages:</strong> English, Portuguese, Spanish, Swahili, Luganda, Kinyarwanda.</p>
     <p><strong>Akoli Speech is available in these countries:</strong> Austria, Belgium, Brazil, Bulgaria, Canada, Colombia, Croatia, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Ghana, Greece, Hungary, Iceland, India, Ireland, Italy, Kenya, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Romania, Rwanda, Singapore, Slovakia, Slovenia, Spain, Sweden, Switzerland, Uganda, the United Kingdom, and the United States.</p>
     <p>More countries and languages coming soon.</p>
-  </div>
+  </section>
+
+  <section class="card partners">
+    <p>Akoli Speech is developed at the <a href="https://www.cdl-inclusion.com/">Centre for Digital Language Inclusion (CDLI)</a> at <a href="https://www.ucl.ac.uk/">UCL's</a> <a href="https://www.disabilityinnovation.com/">Global Disability Innovation Hub (GDI Hub)</a>, in collaboration with <a href="https://talkingtippsafricafoundation.org/">Talking Tips Africa</a> and <a href="https://www.senseshub.vision/">Senses Hub</a>.</p>
+    <p>The development of Akoli Speech has been supported by <a href="https://www.google.org/">Google.org</a>, the UK International Development funded <a href="https://at2030.org/">AT2030 Programme</a> that tests ‘what works’ to improve access to life-changing Assistive Technology (AT) for all, and global law firm Hogan Lovells provided pro bono legal advice.</p>
+  </section>
 </main>
 </body>
 </html>
